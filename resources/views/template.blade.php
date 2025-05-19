@@ -4,10 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budgeting System</title>
 
+    <link rel="stylesheet" href="{{ asset('src/output.css') }}">
+
     <x-header >
     </x-header>
 </head>
-<body>
+<body class="dark:bg-gray-800">
     @yield('content')
 </body>
 </html>

@@ -8,13 +8,15 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
+
+    public $userName;
+
     /**
      * Create a new component instance.
      */
-    public function __construct($type = 'blue', $title = 'Header')
+    public function __construct($userName)
     {
-        $this->type = $type;
-        $this->title = $title;
+        $this->userName = $userName;
     }
 
     /**

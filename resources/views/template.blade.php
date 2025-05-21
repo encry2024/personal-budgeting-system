@@ -6,8 +6,7 @@
 
     <link rel="stylesheet" href="{{ asset('src/output.css') }}">
 
-    <x-header >
-    </x-header>
+    @yield('header')
 </head>
 <body class="dark:bg-gray-800">
     @yield('content')

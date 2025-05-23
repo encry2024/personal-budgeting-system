@@ -555,8 +555,8 @@
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
-  .mt-10 {
-    margin-top: calc(var(--spacing) * 10);
+  .mt-7 {
+    margin-top: calc(var(--spacing) * 7);
   }
   .-mb-px {
     margin-bottom: -1px;
@@ -572,9 +572,6 @@
   }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
-  }
-  .mb-5 {
-    margin-bottom: calc(var(--spacing) * 5);
   }
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
@@ -634,9 +631,6 @@
   .h-5 {
     height: calc(var(--spacing) * 5);
   }
-  .h-7 {
-    height: calc(var(--spacing) * 7);
-  }
   .h-14 {
     height: calc(var(--spacing) * 14);
   }
@@ -673,26 +667,11 @@
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
-  .w-7 {
-    width: calc(var(--spacing) * 7);
-  }
   .w-30 {
     width: calc(var(--spacing) * 30);
   }
-  .w-58 {
-    width: calc(var(--spacing) * 58);
-  }
-  .w-59 {
-    width: calc(var(--spacing) * 59);
-  }
-  .w-60 {
-    width: calc(var(--spacing) * 60);
-  }
-  .w-64 {
-    width: calc(var(--spacing) * 64);
-  }
-  .w-70 {
-    width: calc(var(--spacing) * 70);
+  .w-61 {
+    width: calc(var(--spacing) * 61);
   }
   .w-\[448px\] {
     width: 448px;
@@ -840,9 +819,6 @@
   .bg-\[\#fff2f2\] {
     background-color: #fff2f2;
   }
-  .bg-gray-50 {
-    background-color: var(--color-gray-50);
-  }
   .bg-gray-300 {
     background-color: var(--color-gray-300);
   }
@@ -971,17 +947,17 @@
   .text-\[\#f53003\] {
     color: #f53003;
   }
+  .text-blue-500 {
+    color: var(--color-blue-500);
+  }
+  .text-gray-200 {
+    color: var(--color-gray-200);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
   .text-gray-700 {
     color: var(--color-gray-700);
-  }
-  .text-gray-900 {
-    color: var(--color-gray-900);
-  }
-  .text-red-500 {
-    color: var(--color-red-500);
   }
   .text-white {
     color: var(--color-white);
@@ -1064,6 +1040,13 @@
       display: none;
     }
   }
+  .group-hover\:bg-white {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        background-color: var(--color-white);
+      }
+    }
+  }
   .group-hover\:text-gray-900 {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
@@ -1071,10 +1054,10 @@
       }
     }
   }
-  .group-hover\:text-red-700 {
+  .group-hover\:text-white {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
-        color: var(--color-red-700);
+        color: var(--color-white);
       }
     }
   }
@@ -1199,6 +1182,20 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-sky-700);
+      }
+    }
+  }
+  .hover\:bg-white {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-white);
+      }
+    }
+  }
+  .hover\:text-white {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-white);
       }
     }
   }
@@ -1377,11 +1374,6 @@
       background-color: var(--color-gray-500);
     }
   }
-  .dark\:bg-gray-700 {
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--color-gray-700);
-    }
-  }
   .dark\:bg-gray-800 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-gray-800);
@@ -1417,11 +1409,6 @@
       color: var(--color-gray-400);
     }
   }
-  .dark\:text-red-400 {
-    @media (prefers-color-scheme: dark) {
-      color: var(--color-red-400);
-    }
-  }
   .dark\:text-white {
     @media (prefers-color-scheme: dark) {
       color: var(--color-white);
@@ -1431,15 +1418,6 @@
     @media (prefers-color-scheme: dark) {
       --tw-shadow: inset 0px 0px 0px 1px var(--tw-shadow-color, #fffaed2d);
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-    }
-  }
-  .dark\:group-hover\:text-red-300 {
-    @media (prefers-color-scheme: dark) {
-      &:is(:where(.group):hover *) {
-        @media (hover: hover) {
-          color: var(--color-red-300);
-        }
-      }
     }
   }
   .dark\:group-hover\:text-white {
@@ -1500,6 +1478,15 @@
       &:hover {
         @media (hover: hover) {
           background-color: var(--color-white);
+        }
+      }
+    }
+  }
+  .dark\:hover\:text-white {
+    @media (prefers-color-scheme: dark) {
+      &:hover {
+        @media (hover: hover) {
+          color: var(--color-white);
         }
       }
     }

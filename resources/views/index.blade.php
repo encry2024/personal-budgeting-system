@@ -10,7 +10,7 @@
             <hr class="mb-4" />
 
             @if($errors->has('email'))
-            <div class="mt-3 mb-3 p-3 bg-red-500 border-2 border-none rounded-md">
+            <div class="mt-3 mb-3 p-3 bg-red-700 border-2 border-none rounded-md">
                 <label class="text-white">{{ $errors->first('email') }}</label>
             </div>
             @endif

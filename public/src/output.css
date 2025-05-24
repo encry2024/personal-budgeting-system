@@ -828,6 +828,9 @@
   .bg-red-500 {
     background-color: var(--color-red-500);
   }
+  .bg-red-700 {
+    background-color: var(--color-red-700);
+  }
   .bg-sky-500 {
     background-color: var(--color-sky-500);
   }
@@ -1213,6 +1216,11 @@
   .focus\:outline-sky-500 {
     &:focus {
       outline-color: var(--color-sky-500);
+    }
+  }
+  .active\:bg-blue-600 {
+    &:active {
+      background-color: var(--color-blue-600);
     }
   }
   .active\:bg-gray-600 {

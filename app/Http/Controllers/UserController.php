@@ -31,14 +31,14 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = new User();
-        $user->first_name = $request['first_name'];
-        $user->middle_name = $request['middle_name'];
-        $user->last_name = $request['last_name'];
-        $user->password = bcrypt($request['password']);
-        $user->email = $request['email'];
+        $user->first_name = $request->input('first_name');
+        $user->middle_name = $request->input('middle_name');
+        $user->last_name = $request->input('last_name');
+        $user->password = bcrypt($request->input('password'));
+        $user->email = $request->input('email');
         $user->save();
 
-        return redirect()->route('index')->withMessage('You have successfully registered your account!');
+        return redirect()->route('login')->with('message', 'You have successfully registered your account!')->with('model', $user);
     }
 
     /**

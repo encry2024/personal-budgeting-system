@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Exepnse\StoreExpenseRequest;
+use App\Http\Requests\Expense\StoreExpenseRequest;
+use App\Http\Requests\Expense\UpdateExpenseRequest;
+use App\Models\Expense;
 
 class ExpenseController extends Controller
 {
     //
+    public function __construct(Expense $expense)
+    {
+        $this->expense = $expense;
+    }
 
     public function index()
     {
@@ -22,9 +28,18 @@ class ExpenseController extends Controller
     public function store(StoreExpenseRequest $storeExpenseRequest)
     {
         $expense = new Expense();
-        $expense->name = $storeExpenseRequest['name'];
+        $expense->name = $storeExpenseRequest->input('name');
         $expense->save();
 
-        return redirect()->back()->withMessage('Expense "', $expense->name,'" was successfully created.');
+        return redirect()->back()
+                ->with('message', 'Expense "' . $expense->name . '" was successfully created.')
+                ->with('model', $expense);
+    }
+
+    public function update(Expense $expense, UpdateExpenseRequest $updateExpenseRequest)
+    {
+        $updatedExpense = $expense->update(['name' => $updateExpenseRequest->input('name')]);
+
+        return redirect()->back()->with('model', $expense);
     }
 }

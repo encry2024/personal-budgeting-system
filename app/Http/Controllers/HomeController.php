@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -9,8 +10,8 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function login(): View
     {
-        return view('index');
+        return view('login');
     }
 }

@@ -53,7 +53,7 @@
 
             <div class="block mt-4">
                 <button type="submit" class="rounded-md bg-green-500 py-2 px-2 text-white w-30 shadow-xl hover:bg-green-700">Register</button>
-                <a href="{{ route('index') }}" class="border-2 border-none rounded-md bg-gray-300 py-2 px-2 text-white w-30 shadow-xl float-right dark:bg-gray-500 hover:bg-gray-700 text-center">Cancel</a>
+                <a href="{{ route('login') }}" class="border-2 border-none rounded-md bg-gray-300 py-2 px-2 text-white w-30 shadow-xl float-right dark:bg-gray-500 hover:bg-gray-700 text-center">Cancel</a>
             </div>
         </div>
     </div>

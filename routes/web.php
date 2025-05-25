@@ -20,9 +20,12 @@ Route::post('/user/register', [UserController::class, 'store'])->name('user.stor
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
-    Route::group(['prefix' => 'expense', 'name' => 'expense.'], function () {
-        Route::get('expense', [ExpenseController::class, 'index'])->name('index');
-        Route::get('/expense/create', [ExpenseController::class, 'create'])->name('create');
-        Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
+    Route::name('expense.')->group(function () {
+        Route::group(['prefix' => 'expense'], function () {
+            Route::get('/', [ExpenseController::class, 'index'])->name('index');
+            Route::get('/create', [ExpenseController::class, 'create'])->name('create');
+            Route::post('/store', [ExpenseController::class, 'store'])->name('store');
+            Route::post('/{expense}/update', [ExpenseController::class, 'update'])->name('update');
+        });
     });
 });

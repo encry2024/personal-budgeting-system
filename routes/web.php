@@ -20,6 +20,13 @@ Route::post('/user/register', [UserController::class, 'store'])->name('user.stor
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
+    Route::name('user.')->group(function () {
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('edit');
+            Route::post('/user/{user}/update', [UserController::class, 'update'])->name('update');
+        });
+    });
+
     Route::name('expense.')->group(function () {
         Route::group(['prefix' => 'expense'], function () {
             Route::get('/', [ExpenseController::class, 'index'])->name('index');

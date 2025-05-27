@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -60,9 +61,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(User $user, UpdateUserRequest $updateUserRequest)
     {
-        //
+        $updateUser = $user->update($updateUserRequest->only('first_name', 'middle_name', 'last_name', 'email', 'password'));
+
+        return redirect()->back()->with('message', 'You have successfully update your profile')->with('model', $user);
     }
 
     /**

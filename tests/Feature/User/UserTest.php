@@ -11,20 +11,6 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function userData(): array
-    {
-        return [
-            'user_type_id'      => 1,
-            'user_id'           => 3,
-            'first_name'        => "First Name",
-            'middle_name'       => "Middle Name",
-            'last_name'         => "Last Name",
-            'email'             => 'test@email.com',
-            'username'          => 'test_user',
-            'password'          => 'password'
-        ];
-    }
-
     /**
      * A basic feature test example.
      */
@@ -40,5 +26,32 @@ class UserTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('users', ['id' => session('model')->id]);
+    }
+
+    public function test_update_user(): void
+    {
+        $this->post(route('user.store'), [
+            'first_name' => 'first_name',
+            'middle_name' => 'middle_name',
+            'last_name' => 'last_name',
+            'email' => 'email1@email.com',
+            'password' => '123321',
+            'password_confirmation' => '123321'
+        ]);
+
+        // Create a user and give authorization because the update function needs authenticated user.
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $response = $this->post(route('user.update', session('model')->id), [
+            'first_name' => 'Test User Update Module',
+            'middle_name' => 'middle_name',
+            'last_name' => 'last_name',
+            'email' => 'email1@email.com',
+            'password' => '123321',
+            'password_confirmation' => '123321'
+        ]);
+
+        $this->assertEquals('Test User Update Module', session('model')->first_name);
     }
 }

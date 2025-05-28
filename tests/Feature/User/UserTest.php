@@ -16,7 +16,7 @@ class UserTest extends TestCase
      */
     public function test_add_user(): void
     {
-        $response = $this->post(route('user.store'), [
+        $this->post(route('user.store'), [
             'first_name' => 'Test User 1',
             'middle_name' => '',
             'last_name' => 'Test User 1 Last Name',
@@ -43,7 +43,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $response = $this->post(route('user.update', session('model')->id), [
+        $this->post(route('user.update', session('model')->id), [
             'first_name' => 'Test User Update Module',
             'middle_name' => 'middle_name',
             'last_name' => 'last_name',

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('src/output.css') }}">
 </head>
 <body class="dark:bg-gray-800">
-    @yield('content')
+    <div class="">
+        @yield('content')
+    </div>
 </body>
 </html>

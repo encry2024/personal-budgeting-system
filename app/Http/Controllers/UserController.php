@@ -7,6 +7,7 @@ use Auth;
 use App\Models\User;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\DeleteUserRequest;
 
 class UserController extends Controller
 {
@@ -71,9 +72,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user, DeleteUserRequest $request)
     {
-        //
+        $user->delete();
+
+        return redirect()->back()->with('message', 'User was delete successfully!');
     }
 
     // Custom resource

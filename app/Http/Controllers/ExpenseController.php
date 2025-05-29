@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\Expense\StoreExpenseRequest;
 use App\Http\Requests\Expense\UpdateExpenseRequest;
 use App\Models\Expense;
 
 class ExpenseController extends Controller
 {
+    protected Expense $expense;
+
     //
     public function __construct(Expense $expense)
     {
@@ -40,6 +41,13 @@ class ExpenseController extends Controller
     {
         $updatedExpense = $expense->update(['name' => $updateExpenseRequest->input('name')]);
 
-        return redirect()->back()->with('model', $expense);
+        if ($updatedExpense) {
+            return redirect()->back()->with('model', $expense)
+                ->with("message", "Expense \"" . $updateExpenseRequest->input('name') . "\" was successfully updated.");
+        } else {
+            return redirect()->back()
+                ->with('model', $expense)
+                ->with('message', 'An error occurred while updating Expense.');
+        }
     }
 }

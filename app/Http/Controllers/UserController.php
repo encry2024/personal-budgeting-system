@@ -86,5 +86,10 @@ class UserController extends Controller
 
         return view('dashboard')->with('userName', $userName);
     }
+
+    public function management()
+    {
+        return view('user.management');
+    }
 }
 

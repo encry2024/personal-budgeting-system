@@ -33,14 +33,14 @@
                 class="
                     flex border-solid shadow-md rounded-2 items-center p-3 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 active:bg-gray-600 mt-5 group
 
-                    @if(request()->route()->getName() === 'expense.index')
+                    @if(request()->route()->getName() === 'expense.index' || request()->route()->getName() === 'expense.create')
                         bg-gray-600 text-white
                     @endif
                 ">
                     <svg class="
                         w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white
 
-                        @if(request()->route()->getName() === 'expense.index')
+                        @if(request()->route()->getName() === 'expense.index' || request()->route()->getName() === 'expense.create')
                             dark:text-white
                         @endif
                     "

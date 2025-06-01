@@ -52,25 +52,25 @@
             </li>
 
             <li>
-                <a href="{{ route('user.management') }}"
+                <a href="{{ route('user.settings') }}"
                 class="
                     flex border-solid shadow-md items-center p-3 mt-5 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 active:bg-gray-600 rounded-2 group
-                    
-                    @if(request()->route()->getName() === 'user.management')
+
+                    @if(request()->route()->getName() === 'user.settings')
                         bg-gray-600 text-white
                     @endif
                 ">
                     <svg class="
                         w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white
 
-                        @if(request()->route()->getName() === 'user.management')
+                        @if(request()->route()->getName() === 'user.settings')
                             dark:text-white
                         @endif
                     " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                     d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
-                    <span class="ms-3">User Management</span>
+                    <span class="ms-3">User Settings</span>
                 </a>
             </li>
 

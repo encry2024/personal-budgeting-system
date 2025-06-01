@@ -46,7 +46,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
         //
     }
@@ -54,7 +54,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
         //
     }
@@ -87,9 +87,12 @@ class UserController extends Controller
         return view('dashboard')->with('userName', $userName);
     }
 
-    public function management()
+    // @ToDo: Change management to settings.
+    // * Change currency
+    // * Lock Expense
+    public function settings()
     {
-        return view('user.management');
+        return view('user.settings');
     }
 }
 

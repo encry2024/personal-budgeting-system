@@ -39,11 +39,12 @@ class ExpenseController extends Controller
 
     public function update(Expense $expense, UpdateExpenseRequest $updateExpenseRequest)
     {
+        $expenseName = $updateExpenseRequest->input('name');
         $updatedExpense = $expense->update(['name' => $updateExpenseRequest->input('name')]);
 
         if ($updatedExpense) {
             return redirect()->back()->with('model', $expense)
-                ->with("message", "Expense \"" . $updateExpenseRequest->input('name') . "\" was successfully updated.");
+                ->with("message", "Expense \"" . $expensename . "\" was successfully updated to \"". $updatedExpense->name ."\".");
         } else {
             return redirect()->back()
                 ->with('model', $expense)

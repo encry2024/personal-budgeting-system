@@ -1,13 +1,6 @@
 @extends('template')
 
-@section('header')
-{{-- <x-header userName="{{ $userName }}" /> --}}
-@endsection
-
 @section('content')
-<x-sidebar>
-</x-sidebar>
-
 <div class="grid grid-cols-[256px_1fr] gap-4">
     <div class="">
         <x-sidebar>
@@ -26,6 +19,10 @@
                     {{ $userName }}
                 </span>
             </p>
+        </div>
+
+        <div class="flex justify-center dark:bg-white border-md border-solid rounded-md w-full mt-5 p-3 inline-block h-full">
+
         </div>
     </div>
 </div>

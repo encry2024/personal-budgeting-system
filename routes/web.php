@@ -30,11 +30,9 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::name('expense.')->group(function () {
-        // Route::group(['prefix' => 'expenses'], function () {
-            Route::get('/expenses', [ExpenseController::class, 'index'])->name('index');
-            Route::get('/expense/create', [ExpenseController::class, 'create'])->name('create');
-            Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
-            Route::post('/expense/{expense}/update', [ExpenseController::class, 'update'])->name('update');
-        // });
+        Route::get('/expenses', [ExpenseController::class, 'index'])->name('index');
+        Route::get('/expense/create', [ExpenseController::class, 'create'])->name('create');
+        Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
+        Route::post('/expense/{expense}/update', [ExpenseController::class, 'update'])->name('update');
     });
 });

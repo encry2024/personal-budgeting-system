@@ -34,8 +34,8 @@
                     </label>
 
                     <div class="block mt-4">
-                        <button type="submit" class="text-[14px] rounded-md bg-green-700 py-2 px-2 text-white w-40 shadow-xl
-                        hover:bg-green-600">Create Expense</button>
+                        <button type="submit" class="text-[14px] rounded-md bg-green-700 py-2 px-2 text-white w-30 shadow-xl
+                        hover:bg-green-600">Create</button>
 
                         <a href="{{ route('expense.index') }}" class="text-[14px] border-2 border-none rounded-md
                         bg-gray-300 py-2 px-2 text-white w-30 shadow-xl float-right dark:bg-gray-500

@@ -16,11 +16,10 @@
             @endif
 
             @if(session('message'))
-            <div class="mt-3 mb-3 p-3 bg-green-500 border-2 border-none rounded-md">
+            <div class="mt-3 mb-3 p-3 bg-green-600 border-2 border-none rounded-md">
                 <label class="text-white">{{ session('message') }}</label>
             </div>
             @endif
-
 
             <label class="block">
                 <span class="text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Email</span>

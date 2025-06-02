@@ -34,20 +34,11 @@
                     </thead>
 
                     <tbody>
+                        @foreach($expenses as $expense)
                         <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">Games</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $expense->name }}</td>
                         </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">Groceries</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">Loans</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">Credit Cards</td>
-                        </tr>
-
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>

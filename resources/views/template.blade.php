@@ -10,5 +10,8 @@
         <div class="">
             @yield('content')
         </div>
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @yield('script')
     </body>
 </html>

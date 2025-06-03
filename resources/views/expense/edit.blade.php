@@ -16,8 +16,8 @@
                 </div>
             </div>
 
-            @if(session('message'))
-                <div class="mt-5 p-3 bg-green-500 border-2 border-none rounded-md">
+            @if(request()->session()->has('message'))
+                <div class="mt-5 p-3 {{ session('messageColor') }} border-2 border-none rounded-md">
                     <label class="text-white">{{ session('message') }}</label>
                 </div>
             @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Expense;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreExpenseRequest extends FormRequest
 {
@@ -22,7 +23,15 @@ class StoreExpenseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:expenses'
+            'name' => ['required', Rule::unique('expenses')->whereNull('deleted_at')]
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Please enter a name for the expense.',
+            'name.unique' => 'This expense name already exists.',
         ];
     }
 }

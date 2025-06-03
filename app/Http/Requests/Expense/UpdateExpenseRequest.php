@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Expense;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateExpenseRequest extends FormRequest
 {
@@ -17,12 +19,20 @@ class UpdateExpenseRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'name' => 'unique:expenses|required'
+            'name' => ['required', Rule::unique('expenses')->whereNull('deleted_at')]
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Please enter a name for the expense.',
+            'name.unique' => 'This expense name already exists.',
         ];
     }
 }

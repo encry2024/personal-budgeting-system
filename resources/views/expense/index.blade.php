@@ -87,17 +87,52 @@
 @section('script')
     <script type="module">
         $('.delete-expense').on('click', function (e) {
-            let expenseName =  $(this).attr('data-expense-name');
+            let expenseName = $(this).attr('data-expense-name');
+            let expenseId = $(this).attr('data-expense-id');
+
+            let urlString = "{{ route('expense.destroy', ":expenseId") }}";
+            let deleteRoute = urlString.replace(':expenseId', expenseId);
 
             Swal.fire({
                 title: 'Delete Expense',
                 html: `Are you sure you want to delete ${expenseName}?`,
-                type: 'warning',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Delete',
                 confirmButtonColor: '#ea5b5b',
                 cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: deleteRoute,
+                        dataType: 'json',
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function (data) {
+                            if (data.status === 200) {
+                                Swal.fire({
+                                    title: 'Deleted Successfully',
+                                    icon: 'success',
+                                    html: `${data.message}`,
+                                    confirmButtonText: 'Ok',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    icon: 'error',
+                                    html: `${data.message}`,
+                                    confirmButtonText: 'Ok',
+                                });
+                            }
+                        }
+                    });
+                }
             });
         });
     </script>

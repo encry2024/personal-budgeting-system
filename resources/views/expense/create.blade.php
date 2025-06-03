@@ -16,8 +16,8 @@
             </div>
         </div>
 
-        @if(session('message'))
-            <div class="mt-5 p-3 bg-green-500 border-2 border-none rounded-md">
+        @if(request()->session()->has('message'))
+            <div class="mt-5 p-3 {{ session('messageColor') }} border-2 border-none rounded-md">
                 <label class="text-white">{{ session('message') }}</label>
             </div>
         @endif
@@ -28,7 +28,7 @@
                     @csrf
                     <label class="inline-block mb-5">
                         <span class="text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Expense Name: </span>
-                        <input type="string" name="name" class="inline-block w-100 rounded-md border
+                        <input type="string" id="name" name="name" class="inline-block w-100 rounded-md border
                             border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm
                             focus:border-sky-500 focus:outline focus:outline-sky-500 sm:text-sm" />
                     </label>

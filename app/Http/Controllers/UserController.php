@@ -41,7 +41,9 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->save();
 
-        return redirect()->route('login')->with('message', 'You have successfully registered your account!')->with('model', $user);
+        return redirect()->route('login')
+            ->with('message', 'You have successfully registered your account!')
+            ->with('model', $user);
     }
 
     /**

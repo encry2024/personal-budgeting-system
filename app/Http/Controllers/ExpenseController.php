@@ -6,7 +6,6 @@ use App\Http\Requests\Expense\StoreExpenseRequest;
 use App\Http\Requests\Expense\UpdateExpenseRequest;
 use App\Models\Expense;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
@@ -23,8 +22,11 @@ class ExpenseController extends Controller
     public function index(): View
     {
         $expenses = $this->expense->all();
+        $temporarilyDeletedExpenses = $this->expense->onlyTrashed()->get();
 
-        return view('expense.index')->with('expenses', $expenses);
+        return view('expense.index')
+            ->with('expenses', $expenses)
+            ->with('temporarilyDeletedExpenses', $temporarilyDeletedExpenses);
     }
 
     public function edit(Expense $expense): View
@@ -39,10 +41,10 @@ class ExpenseController extends Controller
 
     public function store(StoreExpenseRequest $storeExpenseRequest): RedirectResponse
     {
-        if ($this->modelExists($this->expense, 'name', $storeExpenseRequest->input('name')) instanceof Expense) {
+        if ($this->modelExists($this->expense, 'name', $storeExpenseRequest->input('name'))) {
             return redirect()->back()
-                ->with('message', 'Cannot update expense name to this name as it already exists .')
-                ->with('messageColor', 'bg-red-500');
+                ->with('message', 'Expense name already exists and was only temporarily deleted.')
+                ->with('messageColor', config('response.color.error'));
         }
 
         $expense = new Expense();
@@ -52,16 +54,13 @@ class ExpenseController extends Controller
             return redirect()->back()
                 ->with('message', 'Expense "' . $expense->name . '" was successfully created.')
                 ->with('model', $expense)
-                ->with('messageColor', 'bg-green-500');
+                ->with('messageColor', config('response.color.success'));
         }
 
         return redirect()->back()->with('message', 'Something went wrong, please try again later.');
     }
 
     /**
-     * @TODO check if the user input is the same as the current name of the expense
-     * if yes: return different message
-     *
      * @param Expense $expense
      * @param UpdateExpenseRequest $updateExpenseRequest
      * @return RedirectResponse
@@ -72,8 +71,8 @@ class ExpenseController extends Controller
 
         if ($this->modelExists($this->expense, 'name', $updateExpenseRequest->input('name'))) {
             return redirect()->back()
-                ->with('message', 'Expense already exists!')
-                ->with('messageColor', 'bg-red-500');
+                ->with('message', 'Cannot update expense name to this name as it already exists and was only temporarily deleted.')
+                ->with('messageColor', config('response.color.error'));
         }
 
         $updatedExpense = $expense->update(['name' => $updateExpenseRequest->input('name')]);
@@ -81,14 +80,14 @@ class ExpenseController extends Controller
         if ($updatedExpense) {
             return redirect()->back()
                 ->with('model', $expense)
-                ->with('messageColor', 'bg-green-500')
+                ->with('messageColor', config('response.color.success'))
                 ->with("message", "Expense \"" . $expenseName . "\" was successfully updated to \"". $expense->name ."\".");
         }
 
         return redirect()->back()
             ->with('model', $expense)
-            ->with('messageColor', 'bg-red-500')
-            ->with('message', 'An error occurred while updating "'. $expenseName .'".');
+            ->with('message', 'An error occurred while updating "'. $expenseName .'".')
+            ->with('messageColor', config('response.color.error'));
     }
 
     public function destroy(Expense $expense): JsonResponse
@@ -101,8 +100,7 @@ class ExpenseController extends Controller
                     'message' => 'Expense "' . $expenseName . '" was successfully deleted.',
                     'model' => $expense,
                     'icon' =>  'success',
-                    'color' => '#00a63e',
-                    'status' => 200
+                    'color' => '#00a63e'
                 ]);
         }
 
@@ -110,8 +108,7 @@ class ExpenseController extends Controller
             'message' => 'An error occurred while deleting Expense.',
             'model' => $expense,
             'icon' =>  'error',
-            'color' => '#ea5b5b',
-            'status' => 500
+            'color' => '#ea5b5b'
         ], 500);
     }
 }

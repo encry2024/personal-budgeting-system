@@ -34,7 +34,7 @@ class UserTest extends TestCase
             'first_name' => 'first_name',
             'middle_name' => 'middle_name',
             'last_name' => 'last_name',
-            'email' => 'email1@email.com',
+            'email' => 'email12@email.com',
             'password' => '123321',
             'password_confirmation' => '123321'
         ]);
@@ -47,7 +47,7 @@ class UserTest extends TestCase
             'first_name' => 'Test User Update Module',
             'middle_name' => 'middle_name',
             'last_name' => 'last_name',
-            'email' => 'email1@email.com',
+            'email' => 'email123@email.com',
             'password' => '123321',
             'password_confirmation' => '123321'
         ]);

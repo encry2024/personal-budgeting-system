@@ -67,8 +67,8 @@ class UserController extends Controller
      */
     public function update(User $user, UpdateUserRequest $updateUserRequest)
     {
-        $this->modelExists(User::all(), 'email', $updateUserRequest->input('email'));
-        $updateUser = $user->update($updateUserRequest->only('first_name', 'middle_name', 'last_name', 'email', 'password'));
+//        if ($this->modelExists(User::all(), 'email', $updateUserRequest->input('email')))
+        $user->update($updateUserRequest->only('first_name', 'middle_name', 'last_name', 'email', 'password'));
 
         return redirect()->back()->with('message', 'You have successfully update your profile')->with('model', $user);
     }

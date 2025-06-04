@@ -540,6 +540,9 @@
   .z-40 {
     z-index: 40;
   }
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
   .float-right {
     float: right;
   }
@@ -701,6 +704,9 @@
   .w-30 {
     width: calc(var(--spacing) * 30);
   }
+  .w-50 {
+    width: calc(var(--spacing) * 50);
+  }
   .w-64 {
     width: calc(var(--spacing) * 64);
   }
@@ -745,8 +751,17 @@
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-cols-\[2fr\] {
+    grid-template-columns: 2fr;
+  }
   .grid-cols-\[256px_1fr\] {
     grid-template-columns: 256px 1fr;
+  }
+  .grid-cols-\[256px_2fr\] {
+    grid-template-columns: 256px 2fr;
   }
   .flex-col {
     flex-direction: column;

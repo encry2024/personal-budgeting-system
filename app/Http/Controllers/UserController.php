@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\DeleteUserRequest;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -65,7 +67,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $user, UpdateUserRequest $updateUserRequest)
+    public function update(User $user, UpdateUserRequest $updateUserRequest): RedirectResponse
     {
 //        if ($this->modelExists(User::all(), 'email', $updateUserRequest->input('email')))
         $user->update($updateUserRequest->only('first_name', 'middle_name', 'last_name', 'email', 'password'));
@@ -76,7 +78,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user, DeleteUserRequest $request)
+    public function destroy(User $user, DeleteUserRequest $request): RedirectResponse
     {
         $user->delete();
 
@@ -84,7 +86,7 @@ class UserController extends Controller
     }
 
     // Custom resource
-    public function dashboard()
+    public function dashboard(): View
     {
         $userName = Auth::user()->first_name;
 
@@ -94,7 +96,7 @@ class UserController extends Controller
     // @ToDo: Change management to settings.
     // * Change currency
     // * Lock Expense
-    public function settings()
+    public function settings(): View
     {
         return view('user.settings');
     }

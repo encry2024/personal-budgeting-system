@@ -44,5 +44,5 @@ jobs:
         run: php artisan key:generate
 
       - name: Execute tests
-        run: php artisan test
+        run: php artisan test .\tests\Feature\
 

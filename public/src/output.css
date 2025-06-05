@@ -704,9 +704,6 @@
   .w-30 {
     width: calc(var(--spacing) * 30);
   }
-  .w-50 {
-    width: calc(var(--spacing) * 50);
-  }
   .w-64 {
     width: calc(var(--spacing) * 64);
   }
@@ -754,14 +751,8 @@
   .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .grid-cols-\[2fr\] {
-    grid-template-columns: 2fr;
-  }
   .grid-cols-\[256px_1fr\] {
     grid-template-columns: 256px 1fr;
-  }
-  .grid-cols-\[256px_2fr\] {
-    grid-template-columns: 256px 2fr;
   }
   .flex-col {
     flex-direction: column;
@@ -896,9 +887,6 @@
   .bg-green-700 {
     background-color: var(--color-green-700);
   }
-  .bg-green-800 {
-    background-color: var(--color-green-800);
-  }
   .bg-red-500 {
     background-color: var(--color-red-500);
   }
@@ -907,9 +895,6 @@
   }
   .bg-red-700 {
     background-color: var(--color-red-700);
-  }
-  .bg-red-800 {
-    background-color: var(--color-red-800);
   }
   .bg-sky-500 {
     background-color: var(--color-sky-500);

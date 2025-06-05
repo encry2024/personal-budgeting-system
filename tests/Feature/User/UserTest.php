@@ -3,13 +3,12 @@
 namespace Tests\Feature\User;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     /**
      * A basic feature test example.
@@ -30,24 +29,15 @@ class UserTest extends TestCase
 
     public function test_update_user(): void
     {
-        $this->post(route('user.store'), [
-            'first_name' => 'first_name',
-            'middle_name' => 'middle_name',
-            'last_name' => 'last_name',
-            'email' => 'email12@email.com',
-            'password' => '123321',
-            'password_confirmation' => '123321'
-        ]);
-
         // Create a user and give authorization because the update function needs authenticated user.
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $this->post(route('user.update', session('model')->id), [
+        $this->post(route('user.update', $user->id), [
             'first_name' => 'Test User Update Module',
             'middle_name' => 'middle_name',
             'last_name' => 'last_name',
-            'email' => 'email123@email.com',
+            'email' => 'email@email.com',
             'password' => '123321',
             'password_confirmation' => '123321'
         ]);

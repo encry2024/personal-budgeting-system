@@ -36,5 +36,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
         Route::post('/expense/{expense}/update', [ExpenseController::class, 'update'])->name('update');
         Route::post('/expense/{expense}/delete', [ExpenseController::class, 'destroy'])->name('destroy');
+        Route::post('/expense/{expense}/restore', [ExpenseController::class, 'restore'])->name('restore');
     });
 });

@@ -111,4 +111,25 @@ class ExpenseController extends Controller
             'color' => '#ea5b5b'
         ], 500);
     }
+
+    public function restore(Expense $expense, RestoreExpenseRequest $request): JsonResponse
+    {
+        $expense = $expense->restore();
+
+        if ($expense) {
+            return response()->json([
+                'message' => 'Expense "'.$expense->name.'" was successfully restored.',
+                'model' => $expense,
+                'icon' =>  'success',
+                'color' => '#00a63e'
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'An error occurred while restoring Expense: "'.$expense->name.'".',
+            'model' => $expense,
+            'icon' =>  'error',
+            'color' => '#ea5b5b'
+        ], 500);
+    }
 }

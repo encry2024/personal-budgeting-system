@@ -15,7 +15,7 @@ class UserTest extends TestCase
      */
     public function test_add_user(): void
     {
-        $this->post(route('user.store'), [
+        $user = $this->post(route('user.store'), [
             'first_name' => 'Test User 1',
             'middle_name' => '',
             'last_name' => 'Test User 1 Last Name',

@@ -22,7 +22,7 @@ abstract class Controller
         $obj = $model->onlyTrashed()->find($id)->restore();
 
         if ($obj) {
-            return $model;
+            return $model->find($id);
         }
 
         return false;

@@ -16,4 +16,15 @@ abstract class Controller
 
         return false;
     }
+
+    protected function restoreModel(Model $model, $id): Model|bool
+    {
+        $obj = $model->onlyTrashed()->find($id)->restore();
+
+        if ($obj) {
+            return $model;
+        }
+
+        return false;
+    }
 }

@@ -101,31 +101,30 @@
                                            text-center ml-1"
                                         data-expense-id="{{ $temporarilyDeletedExpense->id }}"
                                         data-expense-name="{{ $temporarilyDeletedExpense->name }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346
-                                                9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16
-                                                19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772
-                                                5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114
-                                                1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5
-                                                0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32
-                                                0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M8.128 9.155a3.751 3.751 0 1 1 .713-1.321l1.136.656a.75.75 0 0 1 .222 1.104l-.006.007a.75.75 0 0 1-1.032.157 1.421 1.421 0 0 0-.113-.072l-.92-.531Zm-4.827-3.53a2.25 2.25 0 0 1 3.994 2.063.756.756 0 0 0-.122.23 2.25 2.25 0 0 1-3.872-2.293ZM13.348 8.272a5.073 5.073 0 0 0-3.428 3.57 5.08 5.08 0 0 0-.165 1.202 1.415 1.415 0 0 1-.707 1.201l-.96.554a3.751 3.751 0 1 0 .734 1.309l13.729-7.926a.75.75 0 0 0-.181-1.374l-.803-.215a5.25 5.25 0 0 0-2.894.05l-5.325 1.629Zm-9.223 7.03a2.25 2.25 0 1 0 2.25 3.897 2.25 2.25 0 0 0-2.25-3.897ZM12 12.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+                                            <path d="M16.372 12.615a.75.75 0 0 1 .75 0l5.43 3.135a.75.75 0 0 1-.182 1.374l-.802.215a5.25 5.25 0 0 1-2.894-.051l-5.147-1.574a.75.75 0 0 1-.156-1.367l3-1.732Z" />
                                         </svg>
                                     </button>
 
-                                    <a href="{{ route('expense.edit', $temporarilyDeletedExpense->id) }}"
-                                       class="flex items-center gap-2 text-[14px] rounded-md bg-green-500 py-2 px-2
-                                           text-white w-8 shadow-xl float-right dark:bg-green-600 hover:bg-green-700
-                                           text-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" stroke="currentColor" class="w-4 h-4"
-                                             aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832
-                                                      19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1
-                                                      1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                    <button class="restore-expense flex items-center gap-2 text-[14px] rounded-md
+                                    bg-sky-500 py-2 px-2 text-white w-8 shadow-xl float-right dark:bg-sky-600
+                                    hover:bg-sky-700 text-center"
+                                            data-expense-id="{{ $temporarilyDeletedExpense->id }}"
+                                            data-expense-name="{{ $temporarilyDeletedExpense->name }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="w-4 h-4">
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903
+                                                1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75
+                                                0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0
+                                                1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548
+                                                3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0
+                                                0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0
+                                                15.059-4.035.75.75 0 0 0-.53-.918Z" clip-rule="evenodd" />
                                         </svg>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -168,6 +167,56 @@
                             if (xhr.status === 200) {
                                 Swal.fire({
                                     title: 'Deleted Successfully',
+                                    icon: 'success',
+                                    html: `${data.message}`,
+                                    confirmButtonText: 'Ok',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error',
+                                    icon: 'error',
+                                    html: `${data.message}`,
+                                    confirmButtonText: 'Ok',
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        $('.restore-expense').on('click', function (e) {
+            let expenseName = $(this).attr('data-expense-name');
+            let expenseId = $(this).attr('data-expense-id');
+
+            let urlString = "{{ route('expense.restore', ":expenseId") }}";
+            let restoreRoute = urlString.replace(':expenseId', expenseId);
+
+            Swal.fire({
+                title: 'Restore Expense',
+                html: `Are you sure you want to restore ${expenseName}?`,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Restore',
+                confirmButtonColor: '#1e9520',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: restoreRoute,
+                        dataType: 'json',
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function (data, textStatus, xhr) {
+                            if (xhr.status === 200) {
+                                Swal.fire({
+                                    title: 'Expense restored successfully',
                                     icon: 'success',
                                     html: `${data.message}`,
                                     confirmButtonText: 'Ok',

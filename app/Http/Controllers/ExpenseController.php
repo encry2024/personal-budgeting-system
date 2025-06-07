@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Expense\StoreExpenseRequest;
 use App\Http\Requests\Expense\UpdateExpenseRequest;
+use App\Http\Requests\Expense\RestoreExpenseRequest;
 use App\Models\Expense;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -112,11 +113,11 @@ class ExpenseController extends Controller
         ], 500);
     }
 
-    public function restore(Expense $expense, RestoreExpenseRequest $request): JsonResponse
+    public function restore($expenseId, RestoreExpenseRequest $request): JsonResponse
     {
-        $expense = $expense->restore();
+        if ($this->restoreModel($this->expense, $expenseId) instanceof Expense) {
+            $expense = $this->expense->find($expenseId);
 
-        if ($expense) {
             return response()->json([
                 'message' => 'Expense "'.$expense->name.'" was successfully restored.',
                 'model' => $expense,
@@ -126,8 +127,7 @@ class ExpenseController extends Controller
         }
 
         return response()->json([
-            'message' => 'An error occurred while restoring Expense: "'.$expense->name.'".',
-            'model' => $expense,
+            'message' => 'An error occurred while restoring Expense.',
             'icon' =>  'error',
             'color' => '#ea5b5b'
         ], 500);

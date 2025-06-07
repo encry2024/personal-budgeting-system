@@ -115,9 +115,9 @@ class ExpenseController extends Controller
 
     public function restore($expenseId, RestoreExpenseRequest $request): JsonResponse
     {
-        if ($this->restoreModel($this->expense, $expenseId) instanceof Expense) {
-            $expense = $this->expense->find($expenseId);
+        $expense = $this->restoreModel($this->expense, $expenseId);
 
+        if ($expense instanceof $this->expense) {
             return response()->json([
                 'message' => 'Expense "'.$expense->name.'" was successfully restored.',
                 'model' => $expense,

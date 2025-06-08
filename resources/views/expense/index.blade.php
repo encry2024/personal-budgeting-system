@@ -37,7 +37,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach($expenses as $expense)
+                        @foreach($expenses->whereNull('deleted_at') as $expense)
                             <tr class="group">
                                 <td class="border border-gray-300 px-4 py-2 group-hover:bg-gray-50">
                                     {{ $expense->name }}
@@ -90,7 +90,7 @@
                         </thead>
 
                         <tbody>
-                        @foreach($temporarilyDeletedExpenses as $temporarilyDeletedExpense)
+                        @foreach($expenses->whereNotNull('deleted_at') as $temporarilyDeletedExpense)
                             <tr class="group">
                                 <td class="border border-gray-300 px-4 py-2 group-hover:bg-gray-50">
                                     {{ $temporarilyDeletedExpense->name }}

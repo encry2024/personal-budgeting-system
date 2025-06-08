@@ -22,12 +22,9 @@ class ExpenseController extends Controller
 
     public function index(): View
     {
-        $expenses = $this->expense->all();
-        $temporarilyDeletedExpenses = $this->expense->onlyTrashed()->get();
+        $expenses = $this->expense->withTrashed()->get();
 
-        return view('expense.index')
-            ->with('expenses', $expenses)
-            ->with('temporarilyDeletedExpenses', $temporarilyDeletedExpenses);
+        return view('expense.index')->with('expenses', $expenses);
     }
 
     public function edit(Expense $expense): View
@@ -101,7 +98,7 @@ class ExpenseController extends Controller
                     'message' => 'Expense "' . $expenseName . '" was successfully deleted.',
                     'model' => $expense,
                     'icon' =>  'success',
-                    'color' => '#00a63e'
+                    'color' => config('response.json.color.success')
                 ]);
         }
 
@@ -109,7 +106,7 @@ class ExpenseController extends Controller
             'message' => 'An error occurred while deleting Expense.',
             'model' => $expense,
             'icon' =>  'error',
-            'color' => '#ea5b5b'
+            'color' => config('response.json.color.error')
         ], 500);
     }
 
@@ -122,14 +119,14 @@ class ExpenseController extends Controller
                 'message' => 'Expense "'.$expense->name.'" was successfully restored.',
                 'model' => $expense,
                 'icon' =>  'success',
-                'color' => '#00a63e'
+                'color' => config('response.json.color.success')
             ]);
         }
 
         return response()->json([
             'message' => 'An error occurred while restoring Expense.',
             'icon' =>  'error',
-            'color' => '#ea5b5b'
+            'color' => config('response.json.color.error')
         ], 500);
     }
 }

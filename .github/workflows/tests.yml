@@ -43,9 +43,6 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
-      - name: Generate Databases
-        run: php artisan migrate
-
-      - name: Execute tests
-        run: php artisan test ./tests/Feature/
+      - name: Execute Create Databases & Tests
+        run: php artisan migrate && php artisan test ./tests/Feature/
 

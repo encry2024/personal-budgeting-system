@@ -129,4 +129,9 @@ class ExpenseController extends Controller
             'color' => config('response.json.color.error')
         ], 500);
     }
+
+    public function forceDelete($expenseId): JsonResponse
+    {
+
+    }
 }

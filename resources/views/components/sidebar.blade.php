@@ -28,27 +28,54 @@
                 </a>
             </li>
 
-            <li class="">
-                <a href="{{ route('expense.index') }}"
-                class="
-                    flex border-solid shadow-md rounded-2 items-center p-3 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 active:bg-gray-600 mt-5 group
+            @php
+                $isExpenseSection = request()->routeIs('expense.*') || request()->routeIs('attribute.*') || request()->routeIs('category.*');
+            @endphp
 
-                    @if(request()->route()->getName() === 'expense.index' || request()->route()->getName() === 'expense.create')
-                        bg-gray-600 text-white
-                    @endif
-                ">
-                    <svg class="
-                        w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white
-
-                        @if(request()->route()->getName() === 'expense.index' || request()->route()->getName() === 'expense.create')
-                            dark:text-white
-                        @endif
-                    "
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <li>
+                <div class="flex items-center p-3 text-gray-500 rounded-lg">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 mr-2"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 
+                            1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 
+                            12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 
+                            0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 
+                            0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    <span class="ms-3">Expenses</span>
-                </a>
+                    <span class="text-base font-medium">Expenses</span>
+                </div>
+
+                <ul class="pl-10 pr-4 mt-2 space-y-1 text-sm">
+                    <li>
+                        <a href="{{ route('expense.index') }}"
+                           class="block p-2 rounded-lg hover:bg-gray-100 {{ request()->routeIs('expense.index') ? 'bg-gray-600 text-white hover:text-gray-500' : 'text-gray-600' }}">
+                           All Expenses
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('category.index') }}"
+                           class="block p-2 rounded-lg hover:bg-gray-100 {{ request()->routeIs('category.index') ? 'bg-gray-600 text-white hover:text-gray-500' : 'text-gray-600' }}">
+                           Categories
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('expense.create') }}"
+                           class="block p-2 rounded-lg hover:bg-gray-100 {{ request()->routeIs('expense.create') ? 'bg-gray-600 text-white hover:text-gray-500' : 'text-gray-600' }}">
+                           Create Expense
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('attribute.index') }}"
+                           class="block p-2 rounded-lg hover:bg-gray-100 {{ request()->routeIs('attribute.index') ? 'bg-gray-600 text-white hover:text-gray-500' : 'text-gray-600' }}">
+                           Attributes
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li>

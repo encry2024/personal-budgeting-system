@@ -14,7 +14,6 @@ class ExpenseController extends Controller
 {
     protected Expense $expense;
 
-    //
     public function __construct(Expense $expense)
     {
         $this->expense = $expense;
@@ -22,9 +21,7 @@ class ExpenseController extends Controller
 
     public function index(): View
     {
-        $expenses = $this->expense->withTrashed()->get();
-
-        return view('expense.index')->with('expenses', $expenses);
+        
     }
 
     public function edit(Expense $expense): View
@@ -34,7 +31,7 @@ class ExpenseController extends Controller
 
     public function create(): View
     {
-        return view('expense.create');
+        
     }
 
     public function store(StoreExpenseRequest $storeExpenseRequest): RedirectResponse
@@ -61,6 +58,7 @@ class ExpenseController extends Controller
     /**
      * @param Expense $expense
      * @param UpdateExpenseRequest $updateExpenseRequest
+     * 
      * @return RedirectResponse
      */
     public function update(Expense $expense, UpdateExpenseRequest $updateExpenseRequest): RedirectResponse
@@ -69,7 +67,7 @@ class ExpenseController extends Controller
 
         if ($this->modelExists($this->expense, 'name', $updateExpenseRequest->input('name'))) {
             return redirect()->back()
-                ->with('message', 'Cannot update expense name to this name as it already exists and was only temporarily deleted.')
+                ->with('message', 'Cannot update expense name to this name as it already exists or was only temporarily deleted.')
                 ->with('messageColor', config('response.color.error'));
         }
 
@@ -79,7 +77,7 @@ class ExpenseController extends Controller
             return redirect()->back()
                 ->with('model', $expense)
                 ->with('messageColor', config('response.color.success'))
-                ->with("message", "Expense \"" . $expenseName . "\" was successfully updated to \"". $expense->name ."\".");
+                ->with("message", 'Expense "' . $expenseName . '" was successfully updated to "'. $expense->name .'".');
         }
 
         return redirect()->back()
@@ -132,6 +130,16 @@ class ExpenseController extends Controller
 
     public function forceDelete($expenseId): JsonResponse
     {
+        $expense = Expense::withTrashed()->find($expenseId);
 
+        $expenseName = $expense->name;
+
+        if ($expense->forceDelete()) {
+            return response()->json([
+                'message' => 'Expense "' . $expenseName . '" has been permanently deleted.',
+                'icon' => 'success',
+                'color' => config('response.json.color.success')
+             ]);
+        }
     }
 }

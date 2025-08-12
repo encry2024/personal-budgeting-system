@@ -4,19 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Attribute;
+use App\Http\Requests\Attribute\StoreAttributeRequest;
+use App\Http\Requests\Attribute\UpdateAttributeRequest;
+use App\Http\Requests\Attribute\DeleteAttributeRequest;
 
 class AttributeController extends Controller
 {
-    protected Attribute $attribute;
+    // protected Attribute $attribute;
 
-    public function __construct(Attribute $attribute)
-    {
-        $this->attribute = $attribute;
-    }
+    // public function __construct(Attribute $attribute)
+    // {
+    //     $this->attribute = $attribute;
+    // }
 
     public function index()
     {
-        return view('attribute.index');
+        $attributes = Attribute::all();
+
+        return view('attribute.index')->withAttributes($attributes);
     }
 
     public function create()
@@ -24,27 +29,36 @@ class AttributeController extends Controller
         return view('attribute.create');
     }
 
-    public function store()
+    public function store(StoreAttributeRequest $storeAttributeRequest)
     {
+        $attribute = new Attribute();
+        $attribute->name = $storeAttributeRequest->name;
+        $attribute->type = $storeAttributeRequest->type;
 
+        if ($attribute->save()) {
+            return redirect()->back()
+                ->with('message', 'Attribute "' . $attribute->name . '" was successfully created.')
+                ->with('model', $attribute)
+                ->with('messageColor', config('response.color.success'));
+        }
     }
 
-    public function edit()
+    public function edit(Attribute $attribute)
     {
         return view('attribute.edit');
     }
 
-    public function update()
+    public function update(Attribute $attribute, UpdateAttributeRequest $updateAttributeRequest)
     {
 
     }
 
-    public function destroy()
+    public function destroy(DeleteAttributeRequest $deleteAttributeRequest)
     {
 
     }
 
-    public function forceDestroy()
+    public function forceDestroy(DeleteAttributeRequest $deleteAttributeRequest)
     {
 
     }

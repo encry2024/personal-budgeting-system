@@ -8,5 +8,5 @@ class Attribute extends Model
 {
     //
 
-    protected $fillable = ['name', 'type'];
+    protected $fillable = ['user_id', 'name', 'type'];
 }

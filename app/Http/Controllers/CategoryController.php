@@ -13,12 +13,12 @@ use Auth;
 
 class CategoryController extends Controller
 {
-    protected Category $category;
+    /*protected Category $category;
 
     public function __construct(Category $category)
     {
         $this->category = $category;
-    }
+    }*/
 
     public function index()
     {
@@ -39,7 +39,9 @@ class CategoryController extends Controller
         $category->user_id = Auth::user()->id;
 
         if ($category->save()) {
-            return redirect()->back();
+            return redirect()->back()->with('message', 'Category "' . $category->name . '" was successfully created.')
+                ->with('model', $category)
+                ->with('messageColor', config('response.color.success'));
         }
     }
 

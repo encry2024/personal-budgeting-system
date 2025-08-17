@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Item;
+use App\Models\ExpenseAttributeValue;
 
 class Expense extends Model
 {
     //
     use SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['user_id', 'name'];
 
-    public function items()
+    public function attributes()
     {
-        return $this->hasMany(Item::class, 'expense_id', 'id');
+        return $this->hasMany(ExpenseAttributeValue, 'expense_id', 'id');
     }
 }

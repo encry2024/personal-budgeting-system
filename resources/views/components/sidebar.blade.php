@@ -63,13 +63,6 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('expense.create') }}"
-                           class="block p-2 rounded-lg hover:bg-gray-100 {{ request()->routeIs('expense.create') ? 'bg-gray-600 text-white hover:text-gray-500' : 'text-gray-600' }}">
-                           Create Expense
-                        </a>
-                    </li>
-
-                    <li>
                         <a href="{{ route('attribute.index') }}"
                            class="block p-2 rounded-lg hover:bg-gray-100 {{ request()->routeIs('attribute.index') ? 'bg-gray-600 text-white hover:text-gray-500' : 'text-gray-600' }}">
                            Attributes

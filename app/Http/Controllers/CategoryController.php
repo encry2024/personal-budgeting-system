@@ -36,7 +36,7 @@ class CategoryController extends Controller
     {
         $category = new category();
         $category->name = $request->name;
-        $category->user_id = Auth::user()->id;
+        $category->user_id = $this->getCurrentUserId();
 
         if ($category->save()) {
             return redirect()->back()->with('message', 'Category "' . $category->name . '" was successfully created.')

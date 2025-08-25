@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 abstract class Controller
 {
+    public function getCurrentUserId()
+    {
+        return Auth::user()->id;
+    }
+
     protected function modelExists(Model $model, string $column, string $value): bool
     {
         $obj = $model->withTrashed()->where($column, $value)->first();
@@ -26,5 +32,10 @@ abstract class Controller
         }
 
         return false;
+    }
+
+    protected function messageBuilder()
+    {
+        
     }
 }

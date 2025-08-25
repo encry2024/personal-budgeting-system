@@ -9,10 +9,9 @@ use App\Models\Expense;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use DB;
 use App\Models\Category;
 use App\Models\Attribute;
-use Auth;
+use DB;
 
 class ExpenseController extends Controller
 {
@@ -25,7 +24,7 @@ class ExpenseController extends Controller
 
     public function index(): View
     {
-        
+        return view('category.index');
     }
 
     public function edit(Expense $expense): View
@@ -35,12 +34,12 @@ class ExpenseController extends Controller
 
     public function create(Category $category): View
     {
-        $attributes = Attribute::whereUserId(Auth::user()->id)->get();
+        $attributes = Attribute::whereUserId($this->getCurrentUserId())->get();
 
         return view('expense.create')->withCategory($category)->withAttributes($attributes);
         // return DB::transaction(function () use ($category, $request) {
         //     $expense = new Expense();
-        //     $expense->user_id = Auth::user()->id;
+        //     $expense->user_id = $this->getCurrentUserId;
         //     $expense->name = $request->name;
         //     $expense->category_id = $category->id;
         //     $expense->save();

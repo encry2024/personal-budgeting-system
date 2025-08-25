@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index()->unique();
             $table->string('currency');
-            $table->string('currency');
             $table->timestamps();
             $table->softDeletes();
         });

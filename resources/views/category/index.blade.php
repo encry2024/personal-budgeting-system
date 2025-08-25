@@ -61,8 +61,8 @@
                                     </button>
 
                                     <a href="{{ route('category.edit', $expenseCategory->id) }}"
-                                       class="flex items-center gap-2 text-[14px] rounded-md bg-green-500 py-2 px-2
-                                       text-white w-8 shadow-xl float-right dark:bg-green-600 hover:bg-green-700
+                                       class="flex items-center gap-2 text-[14px] rounded-md bg-sky-500 py-2 px-2
+                                       text-white w-8 shadow-xl float-right dark:bg-sky-600 hover:bg-sky-700
                                        text-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-4 h-4"
@@ -71,6 +71,16 @@
                                                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832
                                                   19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1
                                                   1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                        </svg>
+                                    </a>
+
+
+                                    <a href="{{ route('expense.create', $expenseCategory->id) }}"
+                                       class="flex items-center gap-2 text-[14px] rounded-md bg-green-500 py-2 px-2 mr-1
+                                       text-white w-8 shadow-xl float-right dark:bg-green-600 hover:bg-green-700
+                                       text-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                         </svg>
                                     </a>
                                 </td>

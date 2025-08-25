@@ -7,7 +7,6 @@ use App\Models\Attribute;
 use App\Http\Requests\Attribute\StoreAttributeRequest;
 use App\Http\Requests\Attribute\UpdateAttributeRequest;
 use App\Http\Requests\Attribute\DeleteAttributeRequest;
-use Auth;
 
 class AttributeController extends Controller
 {
@@ -20,7 +19,7 @@ class AttributeController extends Controller
 
     public function index()
     {
-        $attributes = Attribute::whereUserId(Auth::user()->id)->get();
+        $attributes = Attribute::whereUserId($this->getCurrentUserId())->get();
 
         return view('attribute.index')->withAttributes($attributes);
     }
@@ -33,7 +32,7 @@ class AttributeController extends Controller
     public function store(StoreAttributeRequest $storeAttributeRequest)
     {
         $attribute = new Attribute();
-        $attribute->user_id = Auth::user()->id;
+        $attribute->user_id = $this->getCurrentUserId();
         $attribute->name = $storeAttributeRequest->name;
         $attribute->type = $storeAttributeRequest->type;
 

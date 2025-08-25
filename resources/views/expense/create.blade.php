@@ -11,7 +11,7 @@
         <div class="flex flex-col dark:bg-white border-md border-solid rounded-md w-full p-3">
             <div class="flex justify-between items-center">
                 <h1 class="text-xl text-gray-600">
-                    Create Expense Category
+                    Create Expense
                 </h1>
             </div>
         </div>

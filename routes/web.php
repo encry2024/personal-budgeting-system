@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::name('expense.')->group(function () {
         Route::get('/expenses', [ExpenseController::class, 'index'])->name('index');
+        Route::get('/expense/{expense}', [ExpenseController::class, 'show'])->name('show');
         Route::get('/expense/{category}/edit', [ExpenseController::class, 'edit'])->name('edit');
         Route::get('/expense/{category}/create', [ExpenseController::class, 'create'])->name('create');
         Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');

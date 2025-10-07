@@ -11,4 +11,14 @@ abstract class Controller
     {
         return Auth::user()->id;
     }
+
+    /*public function responseMessage()
+    {
+        
+    }
+
+    private function messageBuilder()
+    {
+
+    }*/
 }

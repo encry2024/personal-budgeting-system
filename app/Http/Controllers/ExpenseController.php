@@ -24,7 +24,7 @@ class ExpenseController extends Controller
 
     public function index(): View
     {
-        $expenses = Expense::whereUserId($this->getCurrentUserId())->get();
+        $expenses = Expense::withTrashed()->whereUserId($this->getCurrentUserId())->get();
 
         return view('expense.index')->withExpenses($expenses);
     }
@@ -109,9 +109,11 @@ class ExpenseController extends Controller
 
     public function restore($expenseId, RestoreExpenseRequest $request): JsonResponse
     {
-        $expense = $this->restoreModel($this->expense, $expenseId);
+        $expense = Expense::withTrashed()->findOrFail($expenseId);
 
-        if ($expense instanceof $this->expense) {
+        $isRestored = $expense->restore();
+
+        if ($isRestored) {
             return response()->json([
                 'message' => 'Expense "'.$expense->name.'" was successfully restored.',
                 'model' => $expense,

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Expense\StoreExpenseRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Requests\Category\DestroyCategoryRequest;
 use App\Http\Requests\Category\ForceDestroyCategoryRequest;
 use App\Models\Attribute;
 use App\Models\Category;
+use App\Models\Expense;
 use Auth;
 
 class CategoryController extends Controller
@@ -41,6 +43,26 @@ class CategoryController extends Controller
         if ($category->save()) {
             return redirect()->back()->with('message', 'Category "' . $category->name . '" was successfully created.')
                 ->with('model', $category)
+                ->with('messageColor', config('response.color.success'));
+        }
+    }
+
+    public function createCategoryExpense(Category $category)
+    {
+        return view('expense.create')->withCategory($category);
+    }
+
+    public function storeCategoryExpense(Category $category, StoreExpenseRequest $storeExpenseRequest)
+    {
+        $expense = new Expense();
+        $expense->name = $storeExpenseRequest->input('name');
+        $expense->user_id = $this->getCurrentUserId();
+        $expense->category_id = $category->id;
+
+        if ($expense->save()) {
+            return redirect()->back()
+                ->with('message', 'Expense "' . $expense->name . '" was successfully created.')
+                ->with('model', $expense)
                 ->with('messageColor', config('response.color.success'));
         }
     }

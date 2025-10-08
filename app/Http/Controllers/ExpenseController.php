@@ -29,6 +29,11 @@ class ExpenseController extends Controller
         return view('expense.index')->withExpenses($expenses);
     }
 
+    public function show(Expense $expense)
+    {
+        return view('expense.show')->withExpense($expense);
+    }
+
     public function edit(Expense $expense): View
     {
         return view('expense.edit')->with('expense', $expense);

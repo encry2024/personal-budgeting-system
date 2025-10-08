@@ -11,7 +11,7 @@ class Expense extends Model
     //
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'name'];
+    protected $fillable = ['user_id', 'name', 'category_id'];
 
     public function attributes()
     {

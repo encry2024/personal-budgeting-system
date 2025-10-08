@@ -28,7 +28,8 @@ class ExpenseTest extends TestCase
     public function test_expenses_add(): void
     {
         $this->post(route('expense.store'), [
-            'name' => 'Test Expense'
+            'name' => 'Test Expense',
+            'category_id' => 1
         ]);
 
         $this->assertDatabaseHas('expenses', ['name' => 'Test Expense']);
@@ -37,11 +38,13 @@ class ExpenseTest extends TestCase
     public function test_expenses_update(): void
     {
         $expense = $this->post(route('expense.store'), [
-            'name' => 'Test Expense'
+            'name' => 'Test Expense',
+            'category_id' => 1
         ]);
 
         $updateExpense = $this->post(route('expense.update', session('model')->id), [
-            'name' => 'Test Expense Updated'
+            'name' => 'Test Expense Updated',
+            'category_id' => 1
         ]);
 
         $this->assertEquals('Test Expense Updated', session('model')->name);

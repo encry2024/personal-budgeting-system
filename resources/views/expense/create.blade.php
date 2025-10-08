@@ -24,7 +24,7 @@
 
         <div class="flex flex-col dark:bg-white border-md border-solid rounded-md w-full p-3 mt-5">
             <div class="m-3">
-                <form method="POST" action="{{ route('expense.store') }}">
+                <form method="POST" action="{{ route('category.store_category_expense', $category->id) }}">
                     @csrf
                     <label class="inline-block mb-5">
                         <span class="text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Expense Name: </span>

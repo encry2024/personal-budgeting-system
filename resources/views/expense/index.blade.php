@@ -32,16 +32,18 @@
                 <table class="table-auto w-full border-collapse border border-gray-300 mt-5 mb-5">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="border border-gray-300 px-4 py-2 text-left">Expenses</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left">Expense Type</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left">Expense</th>
+                            <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach($expenses->whereNull('deleted_at') as $expense)
                             <tr class="group">
+                                <td class="border border-gray-300 px-4 py-2 group-hover:bg-gray-50">{{ $expense->category->name }}</td>
+                                <td class="border border-gray-300 px-4 py-2 group-hover:bg-gray-50">{{ $expense->name }}</td>
                                 <td class="border border-gray-300 px-4 py-2 group-hover:bg-gray-50">
-                                    {{ $expense->name }}
-
                                     <button
                                        class="delete-expense flex items-center gap-2 text-[14px] rounded-md bg-red-600 py-2 px-2
                                        text-white w-8 shadow-xl float-right dark:bg-red-700 hover:bg-red-800

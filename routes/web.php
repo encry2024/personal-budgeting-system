@@ -35,9 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/categories', [CategoryController::class, 'index'])->name('index');
         Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
         Route::get('/category/create', [CategoryController::class, 'create'])->name('create');
-        Route::get('/category/{category}/expense/create', [CategoryController::class, 'createCategoryExpense'])->name('create_category_expense');
         Route::post('/category/store', [CategoryController::class, 'store'])->name('store');
-        Route::post('/category/{category}/expense/store', [CategoryController::class, 'storeCategoryExpense'])->name('store_category_expense');
         Route::post('/category/{category}/update', [CategoryController::class, 'update'])->name('update');
         Route::post('/category/{category}/delete', [CategoryController::class, 'destroy'])->name('destroy');
         Route::post('/category/{category}/restore', [CategoryController::class, 'restore'])->name('restore');
@@ -48,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/expenses', [ExpenseController::class, 'index'])->name('index');
         Route::get('/expense/{expense}', [ExpenseController::class, 'show'])->name('show');
         Route::get('/expense/{category}/edit', [ExpenseController::class, 'edit'])->name('edit');
-        Route::get('/expense/{category}/create', [ExpenseController::class, 'create'])->name('create');
+        Route::get('/category/{category}/expense/create', [ExpenseController::class, 'create'])->name('create_category_expense');
         Route::post('/expense/store', [ExpenseController::class, 'store'])->name('store');
         Route::post('/expense/{expense}/update', [ExpenseController::class, 'update'])->name('update');
         Route::post('/expense/{expense}/delete', [ExpenseController::class, 'destroy'])->name('destroy');

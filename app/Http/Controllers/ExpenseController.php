@@ -51,6 +51,7 @@ class ExpenseController extends Controller
         $expense = new Expense();
         $expense->name = $storeExpenseRequest->input('name');
         $expense->user_id = $this->getCurrentUserId();
+        $expense->category_id = $storeExpenseRequest->input('category_id');
 
         if ($expense->save()) {
             return redirect()->back()

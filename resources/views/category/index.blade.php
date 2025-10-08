@@ -75,7 +75,7 @@
                                     </a>
 
 
-                                    <a href="{{ route('category.create_category_expense', $expenseCategory->id) }}"
+                                    <a href="{{ route('expense.create_category_expense', $expenseCategory->id) }}"
                                        class="flex items-center gap-2 text-[14px] rounded-md bg-green-500 py-2 px-2 mr-1
                                        text-white w-8 shadow-xl float-right dark:bg-green-600 hover:bg-green-700
                                        text-center">

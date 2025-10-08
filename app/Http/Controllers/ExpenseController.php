@@ -24,7 +24,7 @@ class ExpenseController extends Controller
 
     public function index(): View
     {
-        $expenses = Expense::withTrashed()->whereUserId($this->getCurrentUserId())->get();
+        $expenses = Expense::withTrashed()->with('category')->whereUserId($this->getCurrentUserId())->get();
 
         return view('expense.index')->withExpenses($expenses);
     }
@@ -48,19 +48,24 @@ class ExpenseController extends Controller
 
     public function store(StoreExpenseRequest $storeExpenseRequest): RedirectResponse
     {
-        $expense = new Expense();
-        $expense->name = $storeExpenseRequest->input('name');
-        $expense->user_id = $this->getCurrentUserId();
-        $expense->category_id = $storeExpenseRequest->input('category_id');
+        return DB::transaction(function () use ($storeExpenseRequest) {
+            $expense = Expense::create([
+                'name' => $storeExpenseRequest->input('name'),
+                'user_id' => $this->getCurrentUserId(),
+                'category_id' => $storeExpenseRequest->input('category_id')
+            ]);
 
-        if ($expense->save()) {
+            if ($expense->save()) {
+                return redirect()->back()
+                    ->with('message', 'Expense "' . $expense->name . '" was successfully created.')
+                    ->with('model', $expense)
+                    ->with('messageColor', config('response.color.success'));
+            }
+
             return redirect()->back()
-                ->with('message', 'Expense "' . $expense->name . '" was successfully created.')
-                ->with('model', $expense)
-                ->with('messageColor', config('response.color.success'));
-        }
-
-        return redirect()->back()->with('message', 'Something went wrong, please try again later.');
+                ->with('message', 'Unable to save expense. Please try again later.')
+                ->with('messageColor', config('response.color.error'));
+        });
     }
 
     /**

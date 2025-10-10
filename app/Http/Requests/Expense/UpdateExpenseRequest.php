@@ -24,7 +24,8 @@ class UpdateExpenseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', Rule::unique('expenses')->where('id', $this->expense->id)->whereNull('deleted_at')]
+            'name' => ['required', Rule::unique('expenses')->where('id', $this->expense->id)->whereNull('deleted_at')],
+            'category_id' => ['required', Rule::exists('categories', 'id')]
         ];
     }
 

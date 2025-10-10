@@ -3,6 +3,7 @@
 namespace Tests\Feature\Expense;
 
 use App\Models\Expense;
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -13,40 +14,60 @@ class ExpenseTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected User $user;
+    protected Category $category;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $user = User::factory()->create();
+        $this->user = User::factory()->create();
 
-        $this->actingAs($user);
+        $this->category = Category::factory()->create();
+        $this->category->user_id = $this->user->id;
+        $this->category->save();
+
+        $this->actingAs($this->user);
+    }
+
+    private function testData(): array
+    {
+        return [
+            'name' => 'Test Expense',
+            'user_id' => $this->user->id,
+            'category_id' => $this->category->id
+        ];
     }
 
     /**
-     * A basic feature test example.
+     * A basic feature add expense.
      */
     public function test_expenses_add(): void
     {
         $this->post(route('expense.store'), [
-            'name' => 'Test Expense',
-            'category_id' => 1
+            'name' => $this->testData()['name'],
+            'user_id' => $this->user->id,
+            'category_id' => $this->category->id
         ]);
 
         $this->assertDatabaseHas('expenses', ['name' => 'Test Expense']);
     }
 
+    /**
+     * A basic feature update expense.
+     */
     public function test_expenses_update(): void
     {
-        $expense = $this->post(route('expense.store'), [
-            'name' => 'Test Expense',
-            'category_id' => 1
-        ]);
+        $expense = Expense::factory()->create();
+        
+        $this->actingAs($this->user);
 
-        $updateExpense = $this->post(route('expense.update', session('model')->id), [
-            'name' => 'Test Expense Updated',
-            'category_id' => 1
-        ]);
+        $this->post(route('expense.update', $expense->id), $this->testData());
 
-        $this->assertEquals('Test Expense Updated', session('model')->name);
+        $expense->refresh();
+
+        $this->assertDatabaseHas('expenses', ['name' => 'Test Expense']);
+
+        $this->assertEquals($this->testData()['name'], $expense->name);
     }
 }

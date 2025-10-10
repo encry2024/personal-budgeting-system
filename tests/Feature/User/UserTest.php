@@ -45,6 +45,7 @@ class UserTest extends TestCase
         $this->actingAs($user);
 
         $this->post(route('user.update', $user->id), $this->testData());
+        
         $this->assertDatabaseHas('users', [
             'first_name' => $this->testData()['first_name'],
             'last_name' => $this->testData()['last_name'],

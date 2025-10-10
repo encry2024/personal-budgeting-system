@@ -35,13 +35,13 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $user = new User();
-        $user->first_name = $request->input('first_name');
-        $user->middle_name = $request->input('middle_name');
-        $user->last_name = $request->input('last_name');
-        $user->password = bcrypt($request->input('password'));
-        $user->email = $request->input('email');
-        $user->save();
+        $user = User::create([
+            'first_name' => $request->input('first_name'),
+            'middle_name' => $request->input('middle_name'),
+            'last_name' => $request->input('last_name'),
+            'password' => bcrypt($request->input('password')),
+            'email' => $request->input('email'),
+        ]);
 
         return redirect()->route('login')
             ->with('message', 'You have successfully registered your account!')
